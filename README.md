@@ -51,23 +51,39 @@ if __name__ == '__main__':
 <p>mais completa, apenas retire todas as "?" da frente, que não interfira no código em si.
 
 <h3>Gramática do Trabalho</h3>
-
+  <h2>IDENT<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/IDENT.png" title="hover text">
+  <h2>MOVEMENT<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/MOVEMENT.png" title="hover text">
+  <h2>OPERATOR<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/OPERATOR.png" title="hover text">
+  <h2>arglist<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/arglist.png" title="hover text">
+  <h2>assign<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/assign.png" title="hover text">
+  <h2>code_block<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/code_block.png" title="hover text">
+  <h2>conj<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/conj.png" title="hover text">
+  <h2>defun<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/defun.png" title="hover text">
+  <h2>expr<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/expr.png" title="hover text">
+  <h2>functioncall<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/functioncall.png" title="hover text">
+  <h2>ifexpr<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/ifexpr.png" title="hover text">
+  <h2>instruction<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/instruction.png" title="hover text">
+  <h2>paramlist<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/paramlist.png" title="hover text">
+  <h2>rel<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/rel.png" title="hover text">
+  <h2>sttmt<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/sttmt.png" title="hover text">
+  <h2>valor<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/valor.png" title="hover text">
+  <h2>variable<h2>
   <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/variable.png" title="hover text">
 
 </p>
