@@ -1,67 +1,66 @@
-turtle_grammar = """
-    ?start: sttmt
+?start: sttmt
 
-    ?sttmt : (expr) ";"
+?sttmt : (expr) ";"
 
-    ?expr : (assign) 
-            | (ifexpr) 
-            | (defun)
-            | (atom)
-            | (instruction)+ -> instruction
-            | (conj)
+?expr : (assign) 
+        | (ifexpr) 
+        | (defun)
+        | (atom)
+        | (instruction)+ -> instruction
+        | (conj)
 
-    ?instruction: MOVEMENT valor               -> movement
-               | "c" COLOR [COLOR]              -> change_color
-               | "fill" (code_block)            -> fill
-               | "repeat" valor (code_block)   -> repeat
-               | "reset"                        -> reset
+?instruction: MOVEMENT valor               -> movement
+            | "c" COLOR [COLOR]              -> change_color
+            | "fill" (code_block)            -> fill
+            | "repeat" valor (code_block)   -> repeat
+            | "reset"                        -> reset
 
-    paramlist : ((IDENT)? ("," (IDENT))*)
+paramlist : ((IDENT)? ("," (IDENT))*)
 
-    ?defun : "def" (IDENT) "(" (paramlist) ")" (expr)      
-    
-    ?ifexpr : "if" (conj) "then" (conj) ("else" (conj))?       
-    
-    ?code_block: "{" instruction+ "}"
+?defun : "def" (IDENT) "(" (paramlist) ")" (expr)      
 
-    ?conj : (variable|NUMBER) (OPERATOR (variable|NUMBER))*
+?ifexpr : "if" (conj) "then" (conj) ("else" (conj))?       
 
-    ?rel : OPERATOR
+?code_block: "{" instruction+ "}"
 
-    MOVEMENT: "f"
-                |"b"
-                |"l"
-                |"r"
+?conj : (variable|NUMBER) (OPERATOR (variable|NUMBER))*
 
-    OPERATOR : "==" 
-                | "!=" 
-                | ">" 
-                | "=>" 
-                | "<" 
-                | "=<"
-    
-    ?assign : "var"? (variable) "=" (expr)
-    
-    ?atom : "-" (atom)
-                | "not" (atom)
-                | "(" (expr) ")"
-                | NUMBER
-                | (functioncall)
-                | (variable) 
-    
-    ?functioncall : (IDENT)  (arglist) 
-    
-    arglist : "(" ((expr) ("," (expr))*)? ")"
-    
-    ?valor: NUMBER|variable
+?rel : OPERATOR
 
-    ?variable: (IDENT)
+MOVEMENT: "f"
+            |"b"
+            |"l"
+            |"r"
 
-    IDENT : LETTER+
+OPERATOR : "==" 
+            | "!=" 
+            | ">" 
+            | "=>" 
+            | "<" 
+            | "=<"
 
-    COLOR: LETTER+
-    %import common.LETTER
-    %import common.INT -> NUMBER
-    %import common.WS
-    %ignore WS
-"""
+?assign : "var"? (variable) "=" (expr)
+
+?atom : "-" (atom)
+            | "not" (atom)
+            | "(" (expr) ")"
+            | NUMBER
+            | (functioncall)
+            | (variable) 
+
+?functioncall : (IDENT)  (arglist) 
+
+arglist : "(" ((expr) ("," (expr))*)? ")"
+
+?valor: NUMBER|variable
+
+?variable: (IDENT)
+
+IDENT : LETTER+
+
+COLOR: LETTER+
+%import common.LETTER
+%import common.INT -> NUMBER
+%import common.WS
+%ignore WS
+

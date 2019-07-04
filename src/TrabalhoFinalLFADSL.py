@@ -8,9 +8,9 @@ from lark import Lark
 
 VariaveisGlobal = {}
 FuncoesGlobal = {}
-f = open("biblioLark.txt")
+f = open("src/biblioLark.txt")
 grammar = f.read()
-
+print(grammar)
 turtle_grammar = grammar
 
 parser = Lark(turtle_grammar)
