@@ -1,17 +1,3 @@
-contexto    ::= deffuncao
-            | bloco
-            | empty
-
-bloco       ::= linha [ENDLINE bloco]*
-
-linha       ::= funcao
-            | if
-            | while
-            | return
-            | var_assign
-            | expression
-
-
 sttmt ::= (expr) ";"
 
 expr ::= (assign) 

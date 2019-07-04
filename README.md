@@ -52,7 +52,24 @@ if __name__ == '__main__':
 
 <h3>Gramática do Trabalho</h3>
 
-  <img src="https://github.com/Guilherme-Bodart/LFA-Parser/blob/master/imagens/Regra%20de%20produ%C3%A7%C3%A3o%20da%20gram%C3%A1tica%20MEL.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/IDENT.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/MOVEMENT.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/OPERATOR.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/arglist.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/assign.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/code_block.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/conj.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/defun.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/expr.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/functioncall.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/ifexpr.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/instruction.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/paramlist.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/rel.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/sttmt.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/valor.png" title="hover text">
+  <img src="https://github.com/Guilherme-Bodart/LFA-FinalParse/blob/master/imagens/variable.png" title="hover text">
+
 </p>
 
 
