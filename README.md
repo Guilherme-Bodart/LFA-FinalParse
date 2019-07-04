@@ -49,7 +49,29 @@ LFA-FINALPARSE
 É o arquivo onde fica as expressões do Lark usadas no arquivo TrabalhoFinalLFADSL.psy;
 
 #### Instalação
+<h2>Turtle</h2>
 <pre><code class="bash">
+sudo apt install python3-tk
+</code></pre>
+<h2>Python 3.7</h2>
+<pre><code class="bash">
+cd /usr/src
+sudo wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+</code></pre>
+<pre><code class="bash">
+<h2>Extrair</h2>
+sudo tar xzf Python-3.7.3.tgz
+</code></pre>
+<h2>Compile</h2>
+<pre><code class="bash">
+cd Python-3.7.3
+sudo ./configure --enable-optimizations
+sudo make altinstall
+</code></pre>
+<h2>Lark</h2>
+<pre><code class="bash">
+pip install lark-parser
+</code></pre>
 
 
 ```python
@@ -132,7 +154,7 @@ COLOR: LETTER+
 %import common.INT -> NUMBER
 %import common.WS
 %ignore WS
-
+</code></pre>
 <p>     Nesta parte do código foi colocado "?" na frente das gramáticas para que fosse resumido o resultado, caso queira ver a árvore </p>
 <p>mais completa, retirando o ? da frente irá interferir diretamente no Código;
 
