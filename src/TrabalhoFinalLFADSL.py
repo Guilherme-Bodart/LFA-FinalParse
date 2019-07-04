@@ -43,7 +43,7 @@ def leListaExp(lista,pos):
 
             elif lista[0][pos]=='ifexpr':
                 valor = leIfExpr(lista,pos)
-                print(valor)
+                print('valor?',valor)
                 break
 
             elif lista[0][pos]=='instruction':
@@ -211,9 +211,11 @@ def leFill():
 #Esta função é a função de repetição, para desenhar no Turtle, ela apenas será usada dentro do Turtle, Instruction, já que o objetivo da DSL é o Turtle;
 def leRepeat(lista,pos):
     try:
+        print(lista)
+        print(VariaveisGlobal)
         valor = VariaveisGlobal[lista[pos][0]]
     except:
-        valor = valor
+        valor = lista[pos][0]
     
     count = int(valor)
     leBloco(lista,pos+1,count)
@@ -253,7 +255,7 @@ def leMovement(lista,pos):
     try:
         valor = VariaveisGlobal[lista[pos][1]]
     except:
-        valor = valor
+        valor = lista[pos][1]
 
     if lista[pos][0]=='f':
         turtle.fd(int(valor))
@@ -352,6 +354,7 @@ def verificaFolha(folha):
 #Esta função roda a árvore;
 def run_turtle(program):
     parse_tree = parser.parse(program)
+    print(parse_tree)
     lista = [[]]
     lista = leExpressao(parse_tree,lista)
     print(lista)
