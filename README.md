@@ -2,9 +2,11 @@
 Implementação de um parser descendente recursivo para uma Linguagem Livre de Contexto usando a biblioteca Lark, chamada de MEL.
 
 ### Informações gerais
-- **Autor**: Guilherme Bodart de Oliveira Castro
+- **Autor**: Guilherme Bodart de Oliveira Castro e Ana Carolina Cebin
 - **Linguagem de programação**: Python (versão 3.7.3)
-- **Ambiente de desenvolvimento**: Visual Studio Code (versão 1.33.1)
+- **Ambiente de desenvolvimento**: Visual Studio Code (versão 1.33.1) -  Windows
+- **Biblioteca de Parse**: Lark
+
 
 
 ### Lark - Texto copiado de "https://lark-parser.readthedocs.io/en/latest/"
@@ -22,33 +24,117 @@ Implementação de um parser descendente recursivo para uma Linguagem Livre de C
 <pre><code class="bash">$ pip install lark-parser</code></pre>
 
 ### Descrição geral do código fonte
-O código fonte está estruturado em um único arquivo principal;
+LFA-FINALPARSE
+|_ .vscode
+  |_ launch.json
+|_imagens
+|_ src
+  |_ __pycache__
+    |_turtle.cpython-37.pyc
+|_ biblioLark.txt
+|_ TrabalhoFinalLFA.py
+|_ TrabalhoFinalLFADSL.py
+|_ grammar.ebnf
+|_ lfa-trab-final-2019-1.pdf
+|_ README.md
 
-##### MELParser.py
-É o arquivo onde contém a main e as funções utilizadas para resolver o exercício;
+
+##### TrabalhoFinalLFA.py
+É o arquivo onde contém a main, as funções e as expressões do Lark;
+
+##### TrabalhoFinalLFADSL.py
+É o arquivo onde contém a main, e as funções;
+
+##### biblioLark.txt
+É o arquivo onde fica as expressões do Lark usadas no arquivo TrabalhoFinalLFADSL.psy;
+
+#### Instalação
+<pre><code class="bash">
+
 
 ```python
-def main():    
-    expression = input("\nEscreve uma expressao: ")
+def main():
     while True:
-        print(parser.parse(expression))    
-        expression = input("\nEscreve uma expressao ou aberte enter: ")
-        if expression == "":
-            break 
-if __name__ == '__main__':
-    main()
+        code = input('> ')
+        try:
+            run_turtle(code)
+            
+        except Exception as e:
+            print(e)
 ```
 
-<p> O código acima mostra a main, uma main simples apenas para escrever a expressão e rodar o código principal até ser pressionado apenas o "Enter"</p>
+<p> O código acima mostra a main, uma main simples apenas para escrever a expressão e rodar o código principal, o código foi feito pelo autor do Lark no exemplo da DSL Turtle que utilizei</p>
 
-<pre><code class="bash">?start:expr 
-    ?expr: (term) (("+" | "-") (term))*
-    ?term : (factor) (("*" | "/" | "//" | "%") (factor))*
-    ?factor : (base) ("^" (factor))?
-    ?base : ("+" | "-") (base) | NUMBER | "(" expr ")"</code></pre>
+<p>Eu usei este código em vez de um arquivo com várias linhas para serem lidas, porque como é o Turtle ele ficaria desenhando vários desenhos, então preferi fazer vários "testes" pré prontos para serem usados</p>
+
+<pre><code class="bash">?start: sttmt
+
+?sttmt : (expr) ";"
+
+?expr : (assign) 
+        | (ifexpr) 
+        | (defun)
+        | (atom)
+        | (instruction)+ -> instruction
+        | (conj)
+
+?instruction: MOVEMENT valor               -> movement
+            | "c" COLOR [COLOR]              -> change_color
+            | "fill" (code_block)            -> fill
+            | "repeat" valor (code_block)   -> repeat
+            | "reset"                        -> reset
+
+paramlist : ((IDENT)? ("," (IDENT))*)
+
+?defun : "def" (IDENT) "(" (paramlist) ")" (expr)      
+
+?ifexpr : "if" (conj) "then" (conj) ("else" (conj))?       
+
+?code_block: "{" instruction+ "}"
+
+?conj : (variable|NUMBER) (OPERATOR (variable|NUMBER))*
+
+?rel : OPERATOR
+
+MOVEMENT: "f"
+            |"b"
+            |"l"
+            |"r"
+
+OPERATOR : "==" 
+            | "!=" 
+            | ">" 
+            | "=>" 
+            | "<" 
+            | "=<"
+
+?assign : "var"? (variable) "=" (expr)
+
+?atom : "-" (atom)
+            | "not" (atom)
+            | "(" (expr) ")"
+            | NUMBER
+            | (functioncall)
+            | (variable) 
+
+?functioncall : (IDENT)  (arglist) 
+
+arglist : "(" ((expr) ("," (expr))*)? ")"
+
+?valor: NUMBER|variable
+
+?variable: (IDENT)
+
+IDENT : LETTER+
+
+COLOR: LETTER+
+%import common.LETTER
+%import common.INT -> NUMBER
+%import common.WS
+%ignore WS
 
 <p>     Nesta parte do código foi colocado "?" na frente das gramáticas para que fosse resumido o resultado, caso queira ver a árvore </p>
-<p>mais completa, apenas retire todas as "?" da frente, que não interfira no código em si.
+<p>mais completa, retirando o ? da frente irá interferir diretamente no Código;
 
 <h3>Gramática do Trabalho</h3>
   <h2>IDENT<h2>
@@ -97,7 +183,7 @@ Para buildar/executar o app no ambiente Linux basta abrir o CLI no diretório do
 O python é na versão 3.7.3, não tenho ciência se terá que baixar a nova versão antes, eu apenas testei o programa no ambiente Windowns.
 
 ### Informações sobre "erros"
-Neste trabalho eu não tratei nenhum possível erro do usuário
-    
+Neste trabalho ainda há vários bugs, porém não consigo dizer exatamente o que, e irei dizer exatamente como que funciona o trabalho, e que tem algumas decisões de projeto, como o if so aceitar números e comparações com ">","<" etc;   Apenas uma expressão por linha, não é permitido escrever mais de um sttmt, irá recusar. Outras decisões que explicarei sobre quando falar de cada uma das expressões;
+
 ### Informações adicionais
 Todo o código fonte está hospedado no meu [GitHub](https://github.com/Guilherme-Bodart/LFA-Parser).
