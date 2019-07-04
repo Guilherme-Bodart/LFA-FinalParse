@@ -1,0 +1,71 @@
+contexto    ::= deffuncao
+            | bloco
+            | empty
+
+bloco       ::= linha [ENDLINE bloco]*
+
+linha       ::= funcao
+            | if
+            | while
+            | return
+            | var_assign
+            | expression
+
+
+sttmt ::= (expr) ";"
+
+expr ::= (assign) 
+            | (ifexpr) 
+            | (defun)
+            | (atom)
+            | (instruction)+
+            | (conj)
+
+instruction ::= MOVEMENT valor
+               | "c" COLOR [COLOR] 
+               | "fill" (code_block) 
+               | "repeat" valor (code_block)
+               | "reset"
+
+paramlist ::= ((IDENT)? ("," (IDENT))*)
+
+defun ::= "def" (IDENT) "(" (paramlist) ")" (expr)      
+    
+ifexpr ::= "if" (conj) "then" (conj) ("else" (conj))?       
+    
+code_block ::= "{" instruction+ "}"
+
+conj ::= (variable|NUMBER) (OPERATOR (variable|NUMBER))*
+
+rel ::= OPERATOR
+
+MOVEMENT ::= "f"
+                |"b"
+                |"l"
+                |"r"
+
+OPERATOR ::= "==" 
+                | "!=" 
+                | ">" 
+                | "=>" 
+                | "<" 
+                | "=<"
+    
+assign ::= "var"? (variable) "=" (expr)
+    
+atom ::= "-" (atom)
+                | "not" (atom)
+                | "(" (expr) ")"
+                | NUMBER
+                | (functioncall)
+                | (variable) 
+    
+functioncall::= (IDENT)  (arglist) 
+    
+arglist ::= "(" ((expr) ("," (expr))*)? ")"
+    
+valor ::= NUMBER|variable
+
+variable ::= (IDENT)
+
+IDENT ::= LETTER+

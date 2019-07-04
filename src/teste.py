@@ -1,75 +1,77 @@
-from lark import Lark
-grammar = """
-    start: sttmt+
+#
+# This example shows how to write a basic calculator with variables.
+#
 
-    sttmt : (expr) ";"
+from lark import Lark, Transformer, v_args
 
-    expr : (assign) 
-            | (ifexpr)
-            | (whileexpr)
-            | (blockexpr)
-            | (lexpr) 
-            | (defun)
 
-    defun : "def" (ident) "(" paramlist? ")" (expr)
+try:
+    input = raw_input   # For Python2 compatibility
+except NameError:
+    pass
 
-    paramlist : (ident) ("," (ident))*
-    
-    ifexpr : "if" (expr) "then" (expr) ("else" (expr))?
-            
-    whileexpr : "while" (expr) "do" (expr)
 
-    blockexpr : "{" (sttmt) "}"
+calc_grammar = """
+    ?start: sum
+          | NAME "=" sum    -> assign_var
 
-    assign : "var"? (ident) "=" (expr)        
+    ?sum: product
+        | sum "+" product   -> add
+        | sum "-" product   -> sub
 
-    lexpr : (disj) ("or" (disj))*
+    ?product: atom
+        | product "*" atom  -> mul
+        | product "/" atom  -> div
 
-    disj : (conj) ("and" (conj))*
+    ?atom: NUMBER           -> number
+         | "-" atom         -> neg
+         | NAME             -> var
+         | "(" sum ")"
 
-    conj : (aexpr) ((rel) (aexpr))?
-
-    rel : "==" | "!=" | ">" | ">=" | "<" | "<="
-
-    aexpr : (factor) (("+"|"-") (factor))*
-
-    factor : (term) (("*"|"/") (term))*
-
-    term : (atom) ("^" (atom))?
-
-    atom : "-" (atom)
-                | "not" (atom)
-                | "(" (expr) ")"
-                | NUMBER
-                | (functioncall)
-                | (variable)   
-
-    functioncall : (ident) "(" (arglist)? ")"
-
-    arglist : (expr) ("," (expr))*
-
-    variable : (ident)
-
-    ident : (CHAR+)(CHAR|NUMBER)*
-
-    CHAR: LETTER+  
+    %import common.CNAME -> NAME
     %import common.NUMBER
-    %import common.LETTER
     %import common.WS_INLINE
+
     %ignore WS_INLINE
-
 """
-   
-
-parser = Lark(grammar)
 
 
-def main():    
-    expression = input("\nEscreve uma expressao: ")
+@v_args(inline=True)    # Affects the signatures of the methods
+class CalculateTree(Transformer):
+    from operator import add, sub, mul, truediv as div, neg
+    number = float
+
+    def __init__(self):
+        self.vars = {}
+
+    def assign_var(self, name, value):
+        self.vars[name] = value
+        return value
+
+    def var(self, name):
+        return self.vars[name]
+
+
+calc_parser = Lark(calc_grammar, parser='lalr', transformer=CalculateTree())
+print(calc_grammar)
+calc = calc_parser.parse
+
+
+
+def main():
     while True:
-        print(parser.parse(expression))    
-        expression = input("\nEscreve uma expressao ou aberte enter: ")
-        if expression == "":
-            break 
+        try:
+            s = input('> ')
+        except EOFError:
+            break
+        print(calc(s))
+
+
+def test():
+    print(calc("a = 1+2"))
+    print(calc("1+a*-3"))
+
+
 if __name__ == '__main__':
+    # test()
     main()
