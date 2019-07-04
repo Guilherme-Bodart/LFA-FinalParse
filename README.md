@@ -58,8 +58,8 @@ sudo apt install python3-tk
 cd /usr/src
 sudo wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
 </code></pre>
-<pre><code class="bash">
 <h2>Extrair</h2>
+<pre><code class="bash">
 sudo tar xzf Python-3.7.3.tgz
 </code></pre>
 <h2>Compile</h2>
