@@ -155,8 +155,7 @@ COLOR: LETTER+
 %import common.WS
 %ignore WS
 </code></pre>
-<p>     Nesta parte do código foi colocado "?" na frente das gramáticas para que fosse resumido o resultado, caso queira ver a árvore </p>
-<p>mais completa, retirando o ? da frente irá interferir diretamente no Código;
+<p>     Nesta parte do código foi colocado "?" na frente das gramáticas para que fosse resumido o resultado, caso queira ver a árvore mais completa, retirando o ? da frente irá interferir diretamente no Código;
 
 <h3>Gramática do Trabalho</h3>
   <h2>IDENT<h2>
